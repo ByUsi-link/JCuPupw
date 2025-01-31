@@ -1,0 +1,231 @@
+/* 基础样式 */
+:root {
+    --jc-primary: #3f51b5;
+    --jc-primary-hover: #303f9f;
+    --jc-danger: #ff4444;
+    --jc-danger-hover: #cc0000;
+    --jc-text: #333;
+    --jc-text-light: #666;
+    --jc-background: #fff;
+    --jc-border: #e0e0e0;
+    --jc-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --jc-radius: 12px;
+    --jc-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --jc-text: #fff;
+        --jc-text-light: #ccc;
+        --jc-background: #1e1e1e;
+        --jc-border: #444;
+        --jc-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--jc-background);
+    color: var(--jc-text);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.demo-button {
+    background: var(--jc-primary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--jc-transition);
+}
+
+.demo-button:hover {
+    background: var(--jc-primary-hover);
+    transform: translateY(-2px);
+}
+
+/* 弹窗容器 */
+.jc-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+/* 遮罩层 */
+.jc-modal__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* 弹窗内容容器 */
+.jc-modal__container {
+    position: relative;
+    background: var(--jc-background);
+    margin: 20vh auto;
+    padding: 24px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: var(--jc-radius);
+    box-shadow: var(--jc-shadow);
+    transform: translateY(-30px);
+    opacity: 0;
+    transition: var(--jc-transition);
+}
+
+/* 弹窗激活状态 */
+.jc-modal--active {
+    display: block;
+}
+
+.jc-modal--active .jc-modal__overlay {
+    opacity: 1;
+}
+
+.jc-modal--active .jc-modal__container {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* 弹窗标题 */
+.jc-modal__title {
+    margin: 0 0 16px;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--jc-text);
+}
+
+/* 弹窗内容 */
+.jc-modal__content {
+    margin: 16px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--jc-text-light);
+}
+
+/* 弹窗按钮区域 */
+.jc-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+/* 弹窗按钮 */
+.jc-modal__button {
+    background: var(--jc-primary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--jc-transition);
+}
+
+.jc-modal__button:hover {
+    background: var(--jc-primary-hover);
+    transform: translateY(-2px);
+}
+
+.jc-modal__button:active {
+    transform: translateY(0);
+}
+
+.jc-modal__button--danger {
+    background: var(--jc-danger);
+}
+
+.jc-modal__button--danger:hover {
+    background: var(--jc-danger-hover);
+}
+
+/* 关闭按钮 */
+.jc-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--jc-text-light);
+    transition: color 0.2s ease;
+}
+
+.jc-modal__close:hover {
+    color: var(--jc-text);
+}
+
+/* 加载状态 */
+.jc-modal__loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: var(--jc-radius);
+    justify-content: center;
+    align-items: center;
+}
+
+.jc-modal__loading--active {
+    display: flex;
+}
+
+.jc-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--jc-primary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 移动端优化 */
+@media (max-width: 480px) {
+    .jc-modal__container {
+        margin: 10vh auto;
+        padding: 16px;
+    }
+
+    .jc-modal__title {
+        font-size: 20px;
+    }
+
+    .jc-modal__content {
+        font-size: 14px;
+    }
+
+    .jc-modal__button {
+        padding: 10px 20px;
+    }
+}

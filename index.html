@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCuPupw - HTML 声明式弹窗</title>
+    <link rel="stylesheet" href="jcupupw.css">
+</head>
+<body>
+    <!-- 示例按钮 -->
+    <button class="jc-modal-trigger"
+            data-modal-title="欢迎使用 JCuPupw"
+            data-modal-content="这是一个通过 HTML 声明的弹窗示例！"
+            data-modal-buttons='[
+                {"text": "确定", "action": "handleConfirm"},
+                {"text": "取消", "action": "handleCancel"}
+            ]'>
+        打开弹窗
+    </button>
+
+    <!-- 弹窗结构 -->
+    <div id="jcModal" class="jc-modal" aria-hidden="true" role="dialog">
+        <div class="jc-modal__overlay"></div>
+        <div class="jc-modal__container">
+            <button class="jc-modal__close" aria-label="关闭弹窗">&times;</button>
+            <h2 class="jc-modal__title" id="modalTitle">默认标题</h2>
+            <div class="jc-modal__content" id="modalContent">默认内容</div>
+            <div class="jc-modal__loading">
+                <div class="jc-spinner"></div>
+            </div>
+            <div class="jc-modal__actions" id="modalButtons"></div>
+        </div>
+    </div>
+
+    <script src="jcupupw.js"></script>
+    <script>
+        // 示例：按钮点击事件
+        function handleConfirm() {
+            alert('确定按钮点击');
+        }
+
+        function handleCancel() {
+            console.log('取消按钮点击');
+        }
+    </script>
+</body>
+</html>
