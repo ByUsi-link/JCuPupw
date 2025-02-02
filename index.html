@@ -13,7 +13,9 @@
             data-modal-content="这是一个通过 HTML 声明的弹窗示例！"
             data-modal-buttons='[
                 {"text": "确定", "action": "handleConfirm"},
-                {"text": "取消", "action": "handleCancel"}
+                {"text": "取消", "action": "handleCancel"},
+                {"text": "更多", "action": "handleMore"},
+                {"text": "其他", "action": "handleOther"}
             ]'>
         打开弹窗
     </button>
@@ -41,6 +43,14 @@
 
         function handleCancel() {
             console.log('取消按钮点击');
+        }
+
+        function handleMore() {
+            console.log('更多按钮点击');
+        }
+
+        function handleOther() {
+            console.log('其他按钮点击');
         }
     </script>
 </body>
