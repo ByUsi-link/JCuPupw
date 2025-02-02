@@ -88,6 +88,7 @@ body {
     transform: translateY(-30px);
     opacity: 0;
     transition: var(--jc-transition);
+    animation: fadeInUp 0.5s ease-out forwards;
 }
 
 /* 弹窗激活状态 */
@@ -126,6 +127,7 @@ body {
     justify-content: flex-end;
     gap: 8px;
     margin-top: 24px;
+    flex-wrap: wrap; /* 允许按钮换行 */
 }
 
 /* 弹窗按钮 */
@@ -139,6 +141,8 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: var(--jc-transition);
+    flex: 1 1 auto; /* 允许按钮自动调整大小 */
+    margin: 4px; /* 添加间距 */
 }
 
 .jc-modal__button:hover {
@@ -208,6 +212,18 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* 弹出动画 */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 移动端优化 */
