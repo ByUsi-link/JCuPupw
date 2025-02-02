@@ -92,10 +92,24 @@ class JCuPupw {
 
     // 关闭弹窗
     close() {
-        this.modal.classList.remove('jc-modal--active');
-        document.body.style.overflow = '';
-        this.triggerEvent('close');
-        return this;
+        return new Promise((resolve) => {
+            // 添加关闭动画类
+            this.modal.classList.add('jc-modal--closing');
+
+            // 等待动画完成
+            const animationDuration = 500; // 动画时长为 500ms
+            setTimeout(() => {
+                // 移除关闭动画类
+                this.modal.classList.remove('jc-modal--closing');
+                // 移除弹窗激活类
+                this.modal.classList.remove('jc-modal--active');
+                // 恢复页面滚动
+                document.body.style.overflow = '';
+                // 触发关闭回调
+                this.triggerEvent('close');
+                resolve();
+            }, animationDuration);
+        });
     }
 
     // 设置标题
