@@ -175,3 +175,73 @@ class JCuPupw {
 
 // 初始化
 const jcModal = new JCuPupw();
+
+// 在原有JS文件末尾追加
+class JCuToast {
+    static defaults = {
+        duration: 3000,
+        position: 'top-center',
+        closable: true,
+        type: 'info'
+    };
+
+    constructor(config) {
+        this.config = { ...JCuToast.defaults, ...config };
+        this.toast = this.createToast();
+        this.timeoutId = null;
+        this.init();
+    }
+
+    createToast() {
+        const toast = document.createElement('div');
+        toast.className = `jc-toast jc-toast--${this.config.type}`;
+        toast.setAttribute('role', 'alert');
+        
+        const iconMap = {
+            success: '✓',
+            error: '⚠',
+            warning: '!',
+            info: 'i'
+        };
+        
+        toast.innerHTML = `
+            <span class="jc-toast__icon">${iconMap[this.config.type]}</span>
+            <div class="jc-toast__content">${this.config.message}</div>
+            ${this.config.closable ? '<button class="jc-toast__close">&times;</button>' : ''}
+        `;
+        
+        toast.classList.add(`jc-toast--${this.config.position}`);
+        return toast;
+    }
+
+    init() {
+        document.body.appendChild(this.toast);
+        
+        // 触发重绘以应用动画
+        void this.toast.offsetWidth;
+        this.toast.classList.add('jc-toast--active');
+
+        // 自动关闭
+        if (this.config.duration > 0) {
+            this.timeoutId = setTimeout(() => this.close(), this.config.duration);
+        }
+
+        // 点击关闭
+        if (this.config.closable) {
+            this.toast.querySelector('.jc-toast__close').addEventListener('click', () => this.close());
+        }
+    }
+
+    close() {
+        clearTimeout(this.timeoutId);
+        this.toast.classList.remove('jc-toast--active');
+        setTimeout(() => this.toast.remove(), 300); // 等待动画结束
+    }
+}
+
+// 快捷方法
+['success', 'error', 'warning', 'info'].forEach(type => {
+    JCuToast[type] = (message, options) => {
+        return new JCuToast({ ...options, type, message });
+    };
+});
