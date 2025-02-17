@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JCuPupw - HTML 声明式弹窗</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCuPupw - HTML 声明式弹窗 与 JCuToast 插件</title>
     <link rel="stylesheet" href="jcupupw.css">
 </head>
 <body>
@@ -15,10 +15,19 @@
                 {"text": "确定", "action": "handleConfirm"},
                 {"text": "取消", "action": "handleCancel"},
                 {"text": "更多", "action": "handleMore"},
-                {"text": "其他", "action": "handleOther"}
+                {"text": "其他", "action": "handleOther"},
+                {"text": "GitHub仓库", "action": "GitHub"}
             ]'>
         打开弹窗
     </button>
+
+    <!-- Toast 演示按钮 -->
+    <div style="margin-top: 20px;">
+        <button onclick="showSuccessToast()">显示成功提示</button>
+        <button onclick="showErrorToast()">显示错误提示</button>
+        <button onclick="showWarningToast()">显示警告提示</button>
+        <button onclick="showInfoToast()">显示信息提示</button>
+    </div>
 
     <!-- 弹窗结构 -->
     <div id="jcModal" class="jc-modal" aria-hidden="true" role="dialog">
@@ -51,6 +60,51 @@
 
         function handleOther() {
             console.log('其他按钮点击');
+        }
+
+        function GitHub() {
+            window.location.href = 'https://github.com/ByUsi-link/JCuPupw'
+        }
+
+        function jcupupwnew() {
+             window.location.href = "new.html"
+        }
+
+        // Toast 演示函数
+        function showSuccessToast() {
+            new JCuToast({
+                message: '操作成功！',
+                type: 'success',
+                duration: 3000,
+                position: 'top-right'
+            });
+        }
+
+        function showErrorToast() {
+            new JCuToast({
+                message: '发生错误，请重试！',
+                type: 'error',
+                duration: 4000,
+                position: 'bottom-center'
+            });
+        }
+
+        function showWarningToast() {
+            new JCuToast({
+                message: '请注意保存修改！',
+                type: 'warning',
+                duration: 5000,
+                position: 'top-center'
+            });
+        }
+
+        function showInfoToast() {
+            new JCuToast({
+                message: '这是一个信息提示',
+                type: 'info',
+                duration: 2000,
+                position: 'bottom-right'
+            });
         }
     </script>
 </body>
