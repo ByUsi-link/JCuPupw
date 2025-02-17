@@ -6,7 +6,7 @@
 ## 直接使用镜像站调用资源
 
 ## 1.4.1
--css文件：<https://cdn.jsdelivr.net/gh/ByUsi-link/JCuPupw@786fae9/jcupupw.css>
+- css文件：<https://cdn.jsdelivr.net/gh/ByUsi-link/JCuPupw@786fae9/jcupupw.css>
 - js文件：<https://cdn.jsdelivr.net/gh/ByUsi-link/JCuPupw@5aba204/jcupupw.js>
 
 ## 1.3.0
