@@ -8,18 +8,24 @@
 </head>
 <body>
     <!-- 示例按钮 -->
-    <button class="jc-modal-trigger"
-            data-modal-title="欢迎使用 JCuPupw"
-            data-modal-content="这是一个通过 HTML 声明的弹窗示例！"
-            data-modal-buttons='[
-                {"text": "确定", "action": "handleConfirm"},
-                {"text": "取消", "action": "handleCancel"},
-                {"text": "更多", "action": "handleMore"},
-                {"text": "其他", "action": "handleOther"},
-                {"text": "GitHub仓库", "action": "GitHub"}
-            ]'>
-        打开弹窗
-    </button>
+    <div class="jc-modal__actions">
+        <button class="jc-modal-trigger jc-modal__button"
+                data-modal-title="欢迎使用 JCuPupw"
+                data-modal-content="这是一个通过 HTML 声明的弹窗示例！"
+                data-modal-buttons='[
+                    {"text": "确定", "action": "handleConfirm"},
+                    {"text": "取消", "action": "handleCancel"},
+                    {"text": "更多", "action": "handleMore"},
+                    {"text": "其他", "action": "handleOther"},
+                    {"text": "GitHub仓库", "action": "GitHub"}
+                ]'>
+            打开弹窗
+        </button>
+        <button class="jc-modal__button" onclick="showSuccessToast()">显示成功提示</button>
+        <button class="jc-modal__button" onclick="showErrorToast()">显示错误提示</button>
+        <button class="jc-modal__button" onclick="showWarningToast()">显示警告提示</button>
+        <button class="jc-modal__button" onclick="showInfoToast()">显示信息提示</button>
+    </div>
 
     <!-- Toast 演示按钮 -->
     <div style="margin-top: 20px;">
@@ -85,7 +91,7 @@
                 message: '发生错误，请重试！',
                 type: 'error',
                 duration: 4000,
-                position: 'bottom-right'
+                position: 'bottom-center'
             });
         }
 
@@ -94,7 +100,7 @@
                 message: '请注意保存修改！',
                 type: 'warning',
                 duration: 5000,
-                position: 'top-right'
+                position: 'top-center'
             });
         }
 
